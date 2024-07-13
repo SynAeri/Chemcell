@@ -251,7 +251,7 @@ downloader = Urldownloader()
 
 # Set the URL to download from and the local path to save the file
 input_url = 'https://webbook.nist.gov/chemistry/form-ser/'
-output_path = 'D:\GitHub\Organicle\Reaction_html'
+output_path = 'Nist_Site.html'
 downloader.set_url_and_path(input_url, output_path)
 
 # Retrieve the file
