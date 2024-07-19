@@ -5,20 +5,21 @@ from urllib.request import urlopen
 from urllib.request import urlretrieve
 from contextlib import closing
 
-elements = [
-    "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
-    "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca",
-    "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn",
-    "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr",
-    "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn",
-    "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd",
-    "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb",
-    "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg",
-    "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th",
-    "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm",
-    "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds",
-    "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"
-]
+# elements = [
+#     "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
+#     "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca",
+#     "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn",
+#     "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr",
+#     "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn",
+#     "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd",
+#     "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb",
+#     "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg",
+#     "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th",
+#     "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm",
+#     "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds",
+#     "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"
+# ]
+elements = ["H", "C", "O", "F", "Cl", "Br", "I"]
 
 def get_html_tables(Name):
     #the plan
@@ -27,6 +28,7 @@ def get_html_tables(Name):
     #we will then list them in a table in numpy df format and then we iterate those links
     #those links we get the different names and stats of them
     #external table 
+    #we will also be using this site https://www.chemeo.com/cid/69-954-7/Difluorohydroxyborane
     def response(resp):
         #if it is a functioning HTML
         content = resp.headers['Content-Type'].lower()
@@ -55,10 +57,20 @@ def get_html_tables(Name):
     #we locate the segment where links are located
     link_iter = html.find(id="main")
     element_lists = link_iter.find('ol')
+    all_mixtures = element_lists.find_all("li", {"class": "mixture"})
+    one_mixture = element_lists.find("li", {"class": "mixture"})
+    for mixture in all_mixtures:
+        a_tags = mixture.find_all('a')
+        for a_tag in a_tags:
+            span = a_tag.get_attribute_list
+            if span:
+                print(span, "\n")
+
+
     
     #we now loop for the number of links that exist till each link has been appended to the table we are making
     #The table we are now making is now hence checked thoroughly if they contain an organic SMILES image, if not then it is not an organic reaction and we remove it from the table
     
-    return(len(element_lists.find_all("li", {"class": "mixture"})))
+    #return(len(all_mixtures))
     
 print(get_html_tables("Hcl"))
