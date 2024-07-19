@@ -4,6 +4,7 @@ from html.parser import HTMLParser
 from urllib.request import urlopen
 from urllib.request import urlretrieve
 from contextlib import closing
+import lxml
 
 # elements = [
 #     "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
@@ -46,6 +47,7 @@ def get_html_tables(Name):
                 return None
             
     url = str.format('https://webbook.nist.gov/cgi/cbook.cgi?React={0}&React2=&Prod=&Prod2=&Rev=on&AllowOtherReact=on&AllowOtherProd=on&Type=Any&Units=SI', Name)
+    
     #(He+ • helium) + helium = (He+ • 2helium)
 
     #gets the html
@@ -60,11 +62,22 @@ def get_html_tables(Name):
     all_mixtures = element_lists.find_all("li", {"class": "mixture"})
     one_mixture = element_lists.find("li", {"class": "mixture"})
     for mixture in all_mixtures:
-        a_tags = mixture.find_all('a')
-        for a_tag in a_tags:
-            span = a_tag.get_attribute_list
-            if span:
-                print(span, "\n")
+        print("Next")
+        for j in mixture.a:
+            #print(j)
+            #print(j.attrs)
+            #print(j.has_attr('title'))
+            if j.has_attr('title'):
+                print(j['title'])
+                #print(span.contents)
+            elif j.has_attr('class'):
+                print(j.contents)
+            
+            # if j.find("span")["title"]:
+            #     print(j.find(("span"))["title"])
+            # else:
+            #     print(j.contents)
+        print("\n")
 
 
     
