@@ -45,9 +45,11 @@ def get_html_tables(Name):
                 return resp.content
             else:
                 return None
-            
-    url = str.format('https://webbook.nist.gov/cgi/cbook.cgi?React={0}&React2=&Prod=&Prod2=&Rev=on&AllowOtherReact=on&AllowOtherProd=on&Type=Any&Units=SI', Name)
     
+
+    #\\\First Site\\\
+    url = str.format('https://webbook.nist.gov/cgi/cbook.cgi?React={0}&React2=&Prod=&Prod2=&Rev=on&AllowOtherReact=on&AllowOtherProd=on&Type=Any&Units=SI', Name)
+
     #(He+ • helium) + helium = (He+ • 2helium)
 
     #gets the html
@@ -55,29 +57,104 @@ def get_html_tables(Name):
 
     #beautifulsoup to parse
     html = BeautifulSoup(actualHtml, 'html.parser')
+    #\\\First Site\\\
+
+    #\\\Second Site\\\
+    url_2 = str.format('')
 
     #we locate the segment where links are located
     link_iter = html.find(id="main")
     element_lists = link_iter.find('ol')
     all_mixtures = element_lists.find_all("li", {"class": "mixture"})
     one_mixture = element_lists.find("li", {"class": "mixture"})
+
+
     for mixture in all_mixtures:
-        print("Next")
+        print("\n ///new sources///")
+        link_for_reaction = mixture.a['href']
+        print(link_for_reaction)
+        #we will reset the reactants results and products and set the next timer to false
+        reacts = []
+        products = []
+        products_next = False
         for j in mixture.a:
-            #print(j)
-            #print(j.attrs)
-            #print(j.has_attr('title'))
             if j.has_attr('title'):
-                print(j['title'])
-                #print(span.contents)
+                if products_next == False:
+                        #print(j)
+                        if j.text.strip():
+                            reacts.append(j.text.strip().replace(' ', '-'))
+                            #print("has text so we get text ", j.text)
+                        else:
+                            reacts.append(j['title'].strip().replace(' ', '-'))
+                else:
+                        if j.text.strip():
+                            products.append(j.text.strip().replace(' ', '-'))
+                            #print("has text so we get text ", j.text)
+                        else:
+                            products.append(j['title'].strip().replace(' ', '-'))
             elif j.has_attr('class'):
-                print(j.contents)
+                #reacts.append(j.text)
+                if(j.text == ' = '):
+                    products_next = True
+                #print(j.text)
+            else:
+                print(j, "bug")
+                
             
             # if j.find("span")["title"]:
             #     print(j.find(("span"))["title"])
             # else:
             #     print(j.contents)
-        print("\n")
+        print("reactants ", reacts)
+        print("products ", products)
+        print("///Data///")
+        products_next = False
+
+        #We now get the data for the products 
+        data_url  = str.format("https://webbook.nist.gov{0}", link_for_reaction)
+        data_url = get_response(data_url)
+        data_url = BeautifulSoup(data_url, 'html.parser')
+        #print(html)
+        #parse the source site
+        source_iter = data_url.find(id="main").ul.li
+        for k in source_iter:
+            if k.has_attr('class'):
+                if(k.text == ' = '):
+                    products_next = True
+
+            if products_next == True:
+                if k.has_attr('title'):
+                    data_link = k.a['href']
+                    print("sources for ", k['title'], " ", data_link)
+                    #we now search the site listed in the source
+                    source_url = str.format("https://webbook.nist.gov{0}", data_link)
+                    source_url = get_response(source_url)
+                    source_url = BeautifulSoup(source_url, 'html.parser')
+                    Sourceurl_CAS = source_url.find(id="main")
+                    Sourceurl_CAS = Sourceurl_CAS.ul.find_all("li")
+                    #Sourceurl_CAS = Sourceurl_CAS.find_all('li')
+                    for l in Sourceurl_CAS:
+                        #print(Sourceurl_CAS.find_all("CAS Registry Number:"))
+                        #print(l['strong'] or "no strong")
+                        if l.find('strong'):
+                            if(l.strong.text == "CAS Registry Number:"):
+                                CAS = l.text.replace("CAS Registry Number:", '').strip()
+                                print(l.text)
+                                Getdatasource = str.format("https://www.chemeo.com/search?q={0}", CAS)
+                                Getdatasource = get_response(Getdatasource)
+                                Getdatasource = BeautifulSoup(Getdatasource, 'html.parser')
+                                Getdatasource_parse =  Getdatasource.find(id="details-content")
+                                print(Getdatasource_parse)
+                                print("passed")
+
+
+                                
+                    #print(Sourceurl_CAS.text)
+                    #print("CAS ", Sourceurl_CAS)
+                
+            #print(k)
+        #print(source_iter)
+
 
 
     
