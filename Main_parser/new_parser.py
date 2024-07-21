@@ -50,8 +50,6 @@ def get_html_tables(Name):
     #\\\First Site\\\
     url = str.format('https://webbook.nist.gov/cgi/cbook.cgi?React={0}&React2=&Prod=&Prod2=&Rev=on&AllowOtherReact=on&AllowOtherProd=on&Type=Any&Units=SI', Name)
 
-    #(He+ • helium) + helium = (He+ • 2helium)
-
     #gets the html
     actualHtml = get_response(url)
 
@@ -143,9 +141,26 @@ def get_html_tables(Name):
                                 Getdatasource = str.format("https://www.chemeo.com/search?q={0}", CAS)
                                 Getdatasource = get_response(Getdatasource)
                                 Getdatasource = BeautifulSoup(Getdatasource, 'html.parser')
-                                Getdatasource_parse =  Getdatasource.find(id="details-content")
-                                print(Getdatasource_parse)
-                                print("passed")
+                                #In the off chance that there doesnt exist class container/table we will return an N/A
+                                if Getdatasource.find('div', {"class": "container"}).find('div', id="details-content"):
+                                    Getdatasource_parse = Getdatasource.find('div', {"class": "container"}).find('div', id="details-content")
+                                    Getdatasource_parse = Getdatasource_parse.find('table', {"class": "props details"})
+                                    Getdatasource_parse = Getdatasource_parse.find_all('tr')
+                                    #print(Getdatasource_parse)
+                                    #What i realised is that there is no tbody but there is thead which I can reference which I found silly
+                                    
+                                    for results in Getdatasource_parse:
+                                        if results.find('td'):
+                                            result_index = results.find('td')
+                                            if result_index.find('span').has_attr('title'):
+                                                #print("found one with a title")
+                                                result = results.find('td', {'class': "r"}).text
+                                                print(result_index.find('span')['title'], "/", result_index.find('span').text, ":", result)
+                                        
+                                    #Getdatasource_parse =  Getdatasource.find('div' ,{"class": "props details"})
+                                    #Getdatasource_parse =  Getdatasource_parse.find_all('tr')
+                                else:
+                                    print("N/A")
 
 
                                 
