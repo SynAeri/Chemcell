@@ -1,2 +1,2 @@
 # Organicle
-A machine learning tool to help with organic chemistry
+A machine learning tool to predict compound solubility
