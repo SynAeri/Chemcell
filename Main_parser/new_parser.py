@@ -161,6 +161,7 @@ def get_html_tables(Name):
                                     #Getdatasource_parse =  Getdatasource_parse.find_all('tr')
                                 else:
                                     print("N/A")
+                                print("\n")
 
 
                                 
