@@ -21,7 +21,7 @@ import lxml
 #     "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"
 # ]
 elements = ["H", "C", "O", "F", "Cl", "Br", "I"]
-
+count = 0
 def get_html_tables(Name):
     #the plan
     #to make it iterate the sites including the element
@@ -138,11 +138,12 @@ def get_html_tables(Name):
                             if(l.strong.text == "CAS Registry Number:"):
                                 CAS = l.text.replace("CAS Registry Number:", '').strip()
                                 print(l.text)
+                                #We check if the chemeo exists
                                 Getdatasource = str.format("https://www.chemeo.com/search?q={0}", CAS)
                                 Getdatasource = get_response(Getdatasource)
                                 Getdatasource = BeautifulSoup(Getdatasource, 'html.parser')
                                 #In the off chance that there doesnt exist class container/table we will return an N/A
-                                if Getdatasource.find('div', {"class": "container"}).find('div', id="details-content"):
+                                try:
                                     Getdatasource_parse = Getdatasource.find('div', {"class": "container"}).find('div', id="details-content")
                                     Getdatasource_parse = Getdatasource_parse.find('table', {"class": "props details"})
                                     Getdatasource_parse = Getdatasource_parse.find_all('tr')
@@ -159,8 +160,9 @@ def get_html_tables(Name):
                                         
                                     #Getdatasource_parse =  Getdatasource.find('div' ,{"class": "props details"})
                                     #Getdatasource_parse =  Getdatasource_parse.find_all('tr')
-                                else:
-                                    print("N/A")
+                                except AttributeError:
+                                    print("N/A - Elements not found: ", AttributeError)
+                                    
                                 print("\n")
 
 
