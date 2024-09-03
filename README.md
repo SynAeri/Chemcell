@@ -1,2 +1,2 @@
 # Organicle
-A machine learning tool to help with organic chemistry
+A personal study on using correlation on Chemical reactions
