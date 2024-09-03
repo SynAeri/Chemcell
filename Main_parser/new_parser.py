@@ -162,7 +162,7 @@ def get_html_tables(Name):
                                     #Getdatasource_parse =  Getdatasource_parse.find_all('tr')
                                 except AttributeError:
                                     print("N/A - Elements not found: ", AttributeError)
-                                    
+
                                 print("\n")
 
 
@@ -181,4 +181,4 @@ def get_html_tables(Name):
     
     #return(len(all_mixtures))
     
-print(get_html_tables("Hcl"))
+get_html_tables("Hcl")
