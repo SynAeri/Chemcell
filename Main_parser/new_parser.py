@@ -68,7 +68,7 @@ def get_html_tables(Name):
 
 
     for mixture in all_mixtures:
-        print("\n ///new sources///")
+        print("\n","///new sources///")
         link_for_reaction = mixture.a['href']
         print(link_for_reaction)
         #we will reset the reactants results and products and set the next timer to false
