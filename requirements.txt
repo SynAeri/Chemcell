@@ -4,4 +4,5 @@ html.parser
 lxml
 requests
 urllib3
+pubchempy
 -- contextlib

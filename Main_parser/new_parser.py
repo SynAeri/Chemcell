@@ -4,7 +4,9 @@ from html.parser import HTMLParser
 from urllib.request import urlopen
 from urllib.request import urlretrieve
 from contextlib import closing
-import lxml
+import pubchempy as pcp
+#import lxml
+#from requests_html import AsyncHTMLSession
 
 # elements = [
 #     "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
@@ -144,6 +146,7 @@ def get_html_tables(Name):
                                 Getdatasource = BeautifulSoup(Getdatasource, 'html.parser')
                                 #In the off chance that there doesnt exist class container/table we will return an N/A
                                 try:
+                                    print("//Chemeo-Dataset//")
                                     Getdatasource_parse = Getdatasource.find('div', {"class": "container"}).find('div', id="details-content")
                                     Getdatasource_parse = Getdatasource_parse.find('table', {"class": "props details"})
                                     Getdatasource_parse = Getdatasource_parse.find_all('tr')
@@ -162,6 +165,28 @@ def get_html_tables(Name):
                                     #Getdatasource_parse =  Getdatasource_parse.find_all('tr')
                                 except AttributeError:
                                     print("N/A - Elements not found: ", AttributeError)
+                                
+                                #We will also check the data from the pubchem archives to find molecular structure 
+                                try:
+                                    print("//PubChem-Dataset//")
+                                    #compound = pcp.get_compounds(CAS, 'name')[0]
+                                    properties = ['MolecularWeight', 'RotatableBondCount', 'DefinedBondStereoCount', 'Complexity', 'HBondDonorCount', 'HBondAcceptorCount', 'Complexity']
+                                    compound_p = pcp.get_properties(properties, CAS, 'name')
+                                    print(compound_p)
+                                    for i in properties:
+                                        try:
+                                            print(f"{i}:", compound_p[0].get(i))
+                                        except KeyError:
+                                            print(f"{i}: ", KeyError)
+                                except ValueError:
+                                    print("Doesnt exist")
+
+
+                                    
+                                    
+                                    
+
+                                    
 
                                 print("\n")
 
