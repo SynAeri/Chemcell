@@ -24,6 +24,7 @@ import pubchempy as pcp
 # ]
 elements = ["H", "C", "O", "F", "Cl", "Br", "I"]
 count = 0
+
 def get_html_tables(Name):
     #the plan
     #to make it iterate the sites including the element
@@ -68,8 +69,12 @@ def get_html_tables(Name):
     all_mixtures = element_lists.find_all("li", {"class": "mixture"})
     one_mixture = element_lists.find("li", {"class": "mixture"})
 
+    #This is just a temporary tabular data maker
+    rows = []
+
 
     for mixture in all_mixtures:
+        data = []
         print("\n","///new sources///")
         link_for_reaction = mixture.a['href']
         print(link_for_reaction)
@@ -82,16 +87,21 @@ def get_html_tables(Name):
                 if products_next == False:
                         #print(j)
                         if j.text.strip():
+                            #We grab reactants and products dataset
                             reacts.append(j.text.strip().replace(' ', '-'))
+                            data.append(reacts)
                             #print("has text so we get text ", j.text)
                         else:
                             reacts.append(j['title'].strip().replace(' ', '-'))
+                            data.append(products)
                 else:
                         if j.text.strip():
                             products.append(j.text.strip().replace(' ', '-'))
+                            data.append(products)
                             #print("has text so we get text ", j.text)
                         else:
                             products.append(j['title'].strip().replace(' ', '-'))
+                            data.append(reacts)
             elif j.has_attr('class'):
                 #reacts.append(j.text)
                 if(j.text == ' = '):
@@ -126,6 +136,8 @@ def get_html_tables(Name):
                 if k.has_attr('title'):
                     data_link = k.a['href']
                     print("sources for ", k['title'], " ", data_link)
+                    #We now append the title data
+                    data.append(k['title'])
                     #we now search the site listed in the source
                     source_url = str.format("https://webbook.nist.gov{0}", data_link)
                     source_url = get_response(source_url)
@@ -140,6 +152,7 @@ def get_html_tables(Name):
                             if(l.strong.text == "CAS Registry Number:"):
                                 CAS = l.text.replace("CAS Registry Number:", '').strip()
                                 print(l.text)
+                                data.append(CAS)
                                 #We check if the chemeo exists
                                 Getdatasource = str.format("https://www.chemeo.com/search?q={0}", CAS)
                                 Getdatasource = get_response(Getdatasource)
@@ -159,6 +172,7 @@ def get_html_tables(Name):
                                             if result_index.find('span').has_attr('title'):
                                                 #print("found one with a title")
                                                 result = results.find('td', {'class': "r"}).text
+                                                data.append(result)
                                                 print(result_index.find('span')['title'], "/", result_index.find('span').text, ":", result)
                                         
                                     #Getdatasource_parse =  Getdatasource.find('div' ,{"class": "props details"})
@@ -175,20 +189,23 @@ def get_html_tables(Name):
                                     print(compound_p)
                                     for i in properties:
                                         try:
-                                            print(f"{i}:", compound_p[0].get(i))
+                                            value = compound_p[0].get(i)
+                                            if value is not None:
+                                                print(f"{i}:", compound_p[0].get(i))
+                                                data.append(compound_p[0].get(i))
+                                            else:
+                                                print(f"{i} not found.")
                                         except KeyError:
                                             print(f"{i}: ", KeyError)
-                                except ValueError:
+                                except (KeyError, ValueError, IndexError):
                                     print("Doesnt exist")
 
 
-                                    
-                                    
-                                    
-
-                                    
-
                                 print("\n")
+                    print(data)
+                    rows.append(data)
+    return(data)
+
 
 
                                 
@@ -206,4 +223,4 @@ def get_html_tables(Name):
     
     #return(len(all_mixtures))
     
-get_html_tables("Hcl")
+print(get_html_tables("C"))
