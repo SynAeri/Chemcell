@@ -89,19 +89,15 @@ def get_html_tables(Name):
                         if j.text.strip():
                             #We grab reactants and products dataset
                             reacts.append(j.text.strip().replace(' ', '-'))
-                            data.append(reacts)
                             #print("has text so we get text ", j.text)
                         else:
                             reacts.append(j['title'].strip().replace(' ', '-'))
-                            data.append(products)
                 else:
                         if j.text.strip():
                             products.append(j.text.strip().replace(' ', '-'))
-                            data.append(products)
                             #print("has text so we get text ", j.text)
                         else:
                             products.append(j['title'].strip().replace(' ', '-'))
-                            data.append(reacts)
             elif j.has_attr('class'):
                 #reacts.append(j.text)
                 if(j.text == ' = '):
@@ -116,6 +112,8 @@ def get_html_tables(Name):
             # else:
             #     print(j.contents)
         print("reactants ", reacts)
+        data.append(reacts)
+        data.append(products)
         print("products ", products)
         print("///Data///")
         products_next = False
@@ -165,15 +163,30 @@ def get_html_tables(Name):
                                     Getdatasource_parse = Getdatasource_parse.find_all('tr')
                                     #print(Getdatasource_parse)
                                     #What i realised is that there is no tbody but there is thead which I can reference which I found silly
+                                    #Process of getting average without considering the outlier we grab the ('span')['title' ] before every iteration and check if they are equal to the previous
+                                    #If so we do a count, if not but count is more than 0 then we do the equation.
+                                    count = 0
+                                    prev_title = ""
                                     
                                     for results in Getdatasource_parse:
                                         if results.find('td'):
                                             result_index = results.find('td')
                                             if result_index.find('span').has_attr('title'):
                                                 #print("found one with a title")
+                                                title = result_index.find('span')['title']
                                                 result = results.find('td', {'class': "r"}).text
-                                                data.append(result)
-                                                print(result_index.find('span')['title'], "/", result_index.find('span').text, ":", result)
+                                                if(prev_title != title):
+                                                    if(count == 0):
+                                                        print(title, "/", result_index.find('span').text, ":", result)
+                                                        data.append(result)
+                                                    else:
+                                                        print(title, "/", result_index.find('span').text, ":", result)
+                                                        data.append(result)
+                                                        count == 0
+                                                else:
+                                                    #Both titles are equal
+                                                    count += 1
+                                                prev_title = title
                                         
                                     #Getdatasource_parse =  Getdatasource.find('div' ,{"class": "props details"})
                                     #Getdatasource_parse =  Getdatasource_parse.find_all('tr')
