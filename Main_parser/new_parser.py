@@ -204,7 +204,7 @@ def get_html_tables(Name):
                                 print("\n")
                     print(data)
                     rows.append(data)
-    return(data)
+    return(rows)
 
 
 
