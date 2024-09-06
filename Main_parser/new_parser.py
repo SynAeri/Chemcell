@@ -167,26 +167,46 @@ def get_html_tables(Name):
                                     #If so we do a count, if not but count is more than 0 then we do the equation.
                                     count = 0
                                     prev_title = ""
-                                    
-                                    for results in Getdatasource_parse:
-                                        if results.find('td'):
-                                            result_index = results.find('td')
-                                            if result_index.find('span').has_attr('title'):
-                                                #print("found one with a title")
-                                                title = result_index.find('span')['title']
-                                                result = results.find('td', {'class': "r"}).text
-                                                if(prev_title != title):
-                                                    if(count == 0):
-                                                        print(title, "/", result_index.find('span').text, ":", result)
-                                                        data.append(result)
-                                                    else:
-                                                        print(title, "/", result_index.find('span').text, ":", result)
-                                                        data.append(result)
-                                                        count == 0
-                                                else:
-                                                    #Both titles are equal
-                                                    count += 1
-                                                prev_title = title
+                                    properties = ['Electron affinity', 
+                                                  'Ionization energy', 
+                                                  'Critical Pressure', 
+                                                  'Molar entropy at standard cconditions (1 bar)', 
+                                                  'Solid phase molar entropy at standard conditions', 
+                                                  'Normal Boiling Point Temperature', 
+                                                  'Critical Temperature',
+                                                  'Critical Volume',
+                                                  'Enthalpy of formation at standard conditions'
+                                                  ]
+                                    not_found_property_check = True
+                                    not_found_prop = ""
+                                    #Available_Properties
+                                    for i in properties:
+                                        not_found_property_check = True
+                                        for results in Getdatasource_parse:
+                                            if results.find('td'):
+                                                result_index = results.find('td')
+                                                if result_index.find('span').has_attr('title'):
+                                                    #print("found one with a title")
+                                                    title = result_index.find('span')['title']
+                                                    if(title == i):
+                                                        result = results.find('td', {'class': "r"}).text
+                                                        if(prev_title != title):
+                                                            if(count == 0):
+                                                                print(title, "/", result_index.find('span').text, ":", result)
+                                                                data.append(result)
+                                                                not_found_property_check = False
+                                                            else:
+                                                                print(title, "/", result_index.find('span').text, ":", result)
+                                                                data.append(result)
+                                                                not_found_property_check = False
+                                                                count == 0
+                                                        else:
+                                                            #Both titles are equal
+                                                            count += 1
+                                                        prev_title = title
+                                        if(not_found_property_check == True):                                                       
+                                            print(i, ": ", "N/A")
+                                            data.append("N/A")
                                         
                                     #Getdatasource_parse =  Getdatasource.find('div' ,{"class": "props details"})
                                     #Getdatasource_parse =  Getdatasource_parse.find_all('tr')
@@ -197,7 +217,14 @@ def get_html_tables(Name):
                                 try:
                                     print("//PubChem-Dataset//")
                                     #compound = pcp.get_compounds(CAS, 'name')[0]
-                                    properties = ['MolecularWeight', 'RotatableBondCount', 'DefinedBondStereoCount', 'Complexity', 'HBondDonorCount', 'HBondAcceptorCount', 'Complexity']
+                                    properties = ['MolecularWeight', 
+                                                  'RotatableBondCount', 
+                                                  'DefinedBondStereoCount', 
+                                                  'Complexity', 
+                                                  'HBondDonorCount', 
+                                                  'HBondAcceptorCount', 
+                                                  'Complexity'
+                                                  ]
                                     compound_p = pcp.get_properties(properties, CAS, 'name')
                                     print(compound_p)
                                     for i in properties:
