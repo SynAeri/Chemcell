@@ -6,9 +6,6 @@ from urllib.request import urlopen
 from urllib.request import urlretrieve
 from contextlib import closing
 import pubchempy as pcp
-#import lxml
-#from requests_html import AsyncHTMLSession
-
 # elements = [
 #     "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
 #     "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca",
@@ -34,15 +31,59 @@ class Organicle:
     #those links we get the different names and stats of them
     #external table 
     #we will also be using this site https://www.chemeo.com/cid/69-954-7/Difluorohydroxyborane
+
+    def_Pc_P = ['MolecularWeight', 
+                'RotatableBondCount', 
+                'DefinedBondStereoCount', 
+                'Complexity', 
+                'HBondDonorCount', 
+                'HBondAcceptorCount', 
+                'Complexity',
+                'CovalentUnitCount',
+                'Charge',
+                'HeavyAtomCount',
+                'IsotopeAtomCount'
+                ]
+    
+    def_C_P = ['Electron affinity', 
+                'Ionization energy', 
+                'Critical Pressure', 
+                'Dipole Moment',
+                'Molar entropy at standard cconditions (1 bar)', 
+                'Solid phase molar entropy at standard conditions', 
+                'Normal Boiling Point Temperature', 
+                'Critical Temperature',
+                'Critical Volume',
+                'Enthalpy of formation at standard conditions'
+                ]
+    
     def __init__(self, name):
+        #Defaults
         self.name = name
         self.r_Min = None
         self.r_Max = None
+        self.Pc_P = self.def_Pc_P
+        self.C_P = self.def_C_P
+
     
+    #Options
     def range(self, r_Min=None, r_Max=None):
         self.r_Min = r_Min
         self.r_Max = r_Max
         return self
+    
+    def Pc_Prop(self, Pc_P = None):
+        if Pc_P == None:
+            Pc_P = self.def_Pc_P
+        self.Pc_P = Pc_P
+        return self
+    
+    def C_Prop(self, C_P = None):
+        if C_P == None:
+            C_P = self.def_C_P
+        self.C_P = C_P
+        return self
+    
     
     def __call__(self):
         def response(resp):
@@ -186,17 +227,7 @@ class Organicle:
                                         #If so we do a count, if not but count is more than 0 then we do the equation.
                                         count = 0
                                         prev_title = ""
-                                        properties = ['Electron affinity', 
-                                                    'Ionization energy', 
-                                                    'Critical Pressure', 
-                                                    'Dipole Moment',
-                                                    'Molar entropy at standard cconditions (1 bar)', 
-                                                    'Solid phase molar entropy at standard conditions', 
-                                                    'Normal Boiling Point Temperature', 
-                                                    'Critical Temperature',
-                                                    'Critical Volume',
-                                                    'Enthalpy of formation at standard conditions'
-                                                    ]
+                                        properties = self.C_P
                                         not_found_property_check = True
                                         not_found_prop = ""
                                         #Available_Properties
@@ -237,14 +268,7 @@ class Organicle:
                                     try:
                                         print("//PubChem-Dataset//")
                                         #compound = pcp.get_compounds(CAS, 'name')[0]
-                                        properties = ['MolecularWeight', 
-                                                    'RotatableBondCount', 
-                                                    'DefinedBondStereoCount', 
-                                                    'Complexity', 
-                                                    'HBondDonorCount', 
-                                                    'HBondAcceptorCount', 
-                                                    'Complexity'
-                                                    ]
+                                        properties = self.Pc_P
                                         compound_p = pcp.get_properties(properties, CAS, 'name')
                                         print(compound_p)
                                         for i in properties:
@@ -282,5 +306,5 @@ class Organicle:
     #The table we are now making is now hence checked thoroughly if they contain an organic SMILES image, if not then it is not an organic reaction and we remove it from the table
     
     #return(len(all_mixtures))
-test = Organicle("HCl").range(0,3)  
+test = Organicle("HCl").range(0,3)
 print(test())
