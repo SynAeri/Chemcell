@@ -1,5 +1,5 @@
 # Chemcell
-A personal study on Predicting 
+A personal study on a curiosity + A free use package for tabulating chemical properties for your data needs!
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
