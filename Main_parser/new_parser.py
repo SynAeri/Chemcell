@@ -5,24 +5,13 @@ from html.parser import HTMLParser
 from urllib.request import urlopen
 from urllib.request import urlretrieve
 from contextlib import closing
+import pandas as pd
 import pubchempy as pcp
 import os
 import tempfile
 import csv
-# elements = [
-#     "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
-#     "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca",
-#     "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn",
-#     "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr",
-#     "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn",
-#     "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd",
-#     "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb",
-#     "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg",
-#     "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th",
-#     "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm",
-#     "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds",
-#     "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"
-# ]
+
+
 elements = ["H", "C", "O", "F", "Cl", "Br", "I"]
 count = 0
 
@@ -52,17 +41,14 @@ class Chemcell:
                 'Ionization energy', 
                 'Critical Pressure', 
                 'Dipole Moment',
-                'Molar entropy at standard cconditions (1 bar)', 
-                'Solid phase molar entropy at standard conditions', 
-                'Normal Boiling Point Temperature', 
                 'Critical Temperature',
-                'Critical Volume',
-                'Enthalpy of formation at standard conditions'
+                'Octanol/Water partition coefficient'
                 ]
     
-    def __init__(self, name, file_location=None):
+    def __init__(self, name, outliers = False, file_location=None):
         #Defaults
         self.name = name
+        self.outliers = outliers
         self.file_location = file_location
         self.r_Min = None
         self.r_Max = None
@@ -77,13 +63,13 @@ class Chemcell:
         self.r_Min = r_Min
         self.r_Max = r_Max
         return self
-    
+    #Pubchem_properties
     def Pc_Prop(self, Pc_P = None):
         if Pc_P == None:
             Pc_P = self.def_Pc_P
         self.Pc_P = Pc_P
         return self
-    
+    #Chemeo_properties
     def C_Prop(self, C_P = None):
         if C_P == None:
             C_P = self.def_C_P
@@ -96,7 +82,7 @@ class Chemcell:
 
     
     
-    def __call__(self):
+    def tabulate(self):
         if self.file_location == None:
             file_location_t = os.path.join(tempfile.gettempdir(), 'temprawdata.txt')
         else:
@@ -284,7 +270,10 @@ class Chemcell:
                                             prev_title = ""
                                             properties = self.C_P
                                             not_found_property_check = True
+                                            largest = 0
+                                            smallest = 0
                                             not_found_prop = ""
+                                            sum = 0
                                             #Available_Properties
                                             for i in properties:
                                                 not_found_property_check = True
@@ -298,16 +287,58 @@ class Chemcell:
                                                                 result = results.find('td', {'class': "r"}).text
                                                                 if(prev_title != title):
                                                                     if(count == 0):
+                                                                        if("[" in result):
+                                                                            result = result.replace("[", "").replace("]", "")
+                                                                            result_split = result.split(";")
+                                                                            result = (float(result_split[0]) + float(result_split[1]))/2  
+                                                                        print("count is 0")
                                                                         print(title, "/", result_index.find('span').text, ":", result)
                                                                         data.append(result)
                                                                         not_found_property_check = False
                                                                     else:
+                                                                        print("count is not 0")
+                                                                        #since count is not 0, it means that a new element is found and no more alternatives are found hence we make the average here now.
+                                                                        if(sum > 0):
+                                                                            data[-1] = sum/count
+                                                                            sum = 0
+                                                                        if("[" in result):
+                                                                            result = result.replace("[", "").replace("]", "")
+                                                                            result_split = result.split(";")
+                                                                            result = (float(result_split[0]) + float(result_split[1]))/2
+                                                                        
                                                                         print(title, "/", result_index.find('span').text, ":", result)
                                                                         data.append(result)
                                                                         not_found_property_check = False
                                                                         count == 0
                                                                 else:
-                                                                    #Both titles are equal
+                                                                    #Both titles are equal meaning we are seeing alternatives
+                                                                    #print(prev_title, " is equal to ", title)
+
+                                                                        #To add: if it sees alternmatives then add the sum, if the outlier class is declared false and an outlier exists then we discount the outlier.
+                                                                    #Count to account for average values recorded
+                                                                    if "±" in result:
+                                                                        #print("found")
+                                                                        if "Outlier " in result:
+                                                                            results = result.replace("Outlier ", "")
+                                                                            if(self.outliers == True):
+                                                                                result_split = result.split("±")
+                                                                                sum += float(result_split[0]) + float(result_split[-1])
+                                                                                sum += float(result_split[0]) - float(result_split[-1])
+
+
+                                                                        else:
+                                                                            result_split = result.split("±")
+                                                                            sum += float(result_split[0]) + float(result_split[-1])
+                                                                            sum += float(result_split[0]) - float(result_split[-1])
+                                                                    else:
+                                                                        if "Outlier " in result:
+                                                                            print("outlier found")
+                                                                            results = result.replace("Outlier ", "")
+                                                                            if(self.outliers == True):
+                                                                                sum += float(results)
+
+                                                                        else:
+                                                                            sum += float(result)
                                                                     count += 1
                                                                 prev_title = title
                                                 if(not_found_property_check == True):                                                       
@@ -345,10 +376,11 @@ class Chemcell:
                             rows.append(data)
                 else:
                     print("Skipped because identitcal reaction. or not right amount of Prod,Reacts or same products + reacts")
-
         print(rows)
         headers = headerformat(R_c, P_c)
         print(headers)
+        #df = pd.DataFrame(rows, columns=headers)
+        print("\n Saving file")
         with open(file_location_t, 'w', newline = '') as file:
             write_csv = csv.writer(file)
             write_csv.writerow(headers)
@@ -371,6 +403,4 @@ class Chemcell:
     #The table we are now making is now hence checked thoroughly if they contain an organic SMILES image, if not then it is not an organic reaction and we remove it from the table
     
     #return(len(all_mixtures))
-test = Chemcell("HCl", "/workspaces/Organicle/Example_Data").range(0, 6)
-
-print(test())
+test = Chemcell("HCl", False, "/workspaces/Organicle/Example_Data").range(0, 6).tabulate()
