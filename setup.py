@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 long_desc=""
 setup(
     name="chemcell",
-    version="0.01"
-    description="highly modifiable tabulation for chemical reactions"
+    version="0.01",
+    description="highly modifiable tabulation for chemical reactions",
     long_description= long_desc,
     author="Jordan Maquiran, Cooper Donnaly",
     author_email="jordan.maquiran@outlook.com",
@@ -27,6 +27,6 @@ setup(
         "Topic :: Scientific/Engineering :: Chemistry",
         "Intended Audience :: Science/Research",
         "Intended Audience :: Education",
-    ]
+    ],
     packages=find_packages()
 )
