@@ -5,7 +5,7 @@ setup(
     version="0.01"
     description="highly modifiable tabulation for chemical reactions"
     long_description= long_desc,
-    author="Jordan Maquiran, Cooper Donnaly",
+    author="Jordan Maquiran, Cooper Donnely",
     author_email="jordan.maquiran@outlook.com",
     url="https://github.com/SynAeri/Chemcell",
     install_requires=[
