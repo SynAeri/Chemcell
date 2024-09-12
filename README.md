@@ -29,3 +29,6 @@ data = example.tabulate()
 ```
 For self study and educational purposes, general Ml predictions et al.
 
+## Citation
+Chemical and physical properties from Cheméo.
+
