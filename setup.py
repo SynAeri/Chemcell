@@ -1,5 +1,12 @@
 from setuptools import setup, find_packages
-long_desc=""
+long_desc="""
+Chemcell is a byproduct of a bit of a study I have done with a peer at another University, to both learn new skills and improve efficiency for data processing and analysation,
+This serves to benefit scraping bulk amounts of reaction data from Nist and then using data from pubchem and chemeo (where I personally average the data), I realised (and my peer),
+I could make this a tool to use later while also adding onto it (having the option to allow outliers).
+
+In essence this is a tool to help with the process of tabulating data for data analysis and personal research purposes - for fun
+
+"""
 setup(
     name="chemcell",
     version="0.01",
