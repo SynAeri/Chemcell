@@ -1,5 +1,6 @@
 
 # Chemcell - A multi-use Package To Tabulate Chemical Properties
+[Link to pypi](https://pypi.org/project/chemcell/0.1/)
 A personal study on a curiosity + A free use package for tabulating chemical properties for your data needs!
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
