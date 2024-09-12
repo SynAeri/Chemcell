@@ -26,6 +26,7 @@ class Chemcelltabulate:
         all_mixtures = element_lists.find_all("li", {"class": "mixture"})
         one_mixture = element_lists.find("li", {"class": "mixture"})
 
+        print("Welcome to Jordans Organicle-- Beginning process...")
         #Data which is modified and can be as well
         max = len(all_mixtures)
         min = 0
@@ -36,10 +37,10 @@ class Chemcelltabulate:
 
         #This is just a temporary tabular data maker
         rows = []
-        #print(r_Max)
-        #print(r_Min)
-        #print("\n")
-        #print("Chemcell attr")
+        print(r_Max)
+        print(r_Min)
+        print("\n")
+        print("Chemcell attr")
         
         #Misc Variables
         Products_p = []
@@ -264,4 +265,4 @@ class Chemcelltabulate:
                 else:
                     print("Skipped because identitcal reaction. or not right amount of Prod,Reacts or same products + reacts")
         print(rows)
-        return(rows,R_c, P_c)
+        return(rows,R_c, P_c )

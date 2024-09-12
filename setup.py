@@ -9,15 +9,14 @@ setup(
     author_email="jordan.maquiran@outlook.com",
     url="https://github.com/SynAeri/Chemcell",
     install_requires=[
-        "reqests",
         "beautifulsoup4",
         "pandas",
-        "pubchempy",
         "html.parser",
         "lxml",
+        "requests",
         "urllib3",
-        "numpy"
-
+        "pubchempy",
+        "numpy",
     ],
     classifiers=[
         "Programming Language :: Python :: 3.12",

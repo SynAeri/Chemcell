@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: chemcell
+Version: 0.1
+Summary: highly modifiable tabulation for chemical reactions
+Home-page: https://github.com/SynAeri/Chemcell
+Author: Jordan Maquiran, Cooper Donnely
+Author-email: jordan.maquiran@outlook.com
+Classifier: Programming Language :: Python :: 3.12
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Documentation
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+License-File: LICENSE
+Requires-Dist: beautifulsoup4
+Requires-Dist: pandas
+Requires-Dist: html.parser
+Requires-Dist: lxml
+Requires-Dist: requests
+Requires-Dist: urllib3
+Requires-Dist: pubchempy
+Requires-Dist: numpy
