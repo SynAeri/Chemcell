@@ -13,7 +13,11 @@ A personal study on a curiosity + A free use package for tabulating chemical pro
 A Software used to scrape data from [Nist](https://www.nist.gov/), [Chemeo](https://www.chemeo.com/) and [Pubchem](https://pubchem.ncbi.nlm.nih.gov/) to format chemical properties in csv form originally as a study for organic compounds and its partition coefficient, to see if we could use a deepforest algorithm to predict other following reactions.
 
 ## About Chemcell
-N/A
+Chemcell is a byproduct of a bit of a study I have done with a peer at another University, to both learn new skills and improve efficiency for data processing and analysation,
+This serves to benefit scraping bulk amounts of reaction data from Nist and then using data from pubchem and chemeo (where I personally average the data), I realised (and my peer),
+I could make this a tool to use later while also adding onto it (having the option to allow outliers).
+
+In essence this is a tool to help with the process of tabulating data for data analysis and personal research purposes - for fun
 
 ## Implementation
 
