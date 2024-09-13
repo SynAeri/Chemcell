@@ -46,7 +46,6 @@ class Chemcelltabulate:
         Reactants_p = []
         R_c = R_count
         P_c = P_Count
-        print(max)
         #Find the reaction lists
         for i in range(min, max):
             data = []

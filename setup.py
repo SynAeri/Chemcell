@@ -9,7 +9,7 @@ In essence this is a tool to help with the process of tabulating data for data a
 """
 setup(
     name="chemcell",
-    version="0.01",
+    version="0.2.1",
     description="highly modifiable tabulation for chemical reactions",
     long_description= long_desc,
     author="Jordan Maquiran, Cooper Donnely",
