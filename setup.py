@@ -1,17 +1,14 @@
 from setuptools import setup, find_packages
-long_desc="""
-Chemcell is a byproduct of a bit of a study I have done with a peer at another University, to both learn new skills and improve efficiency for data processing and analysation,
-This serves to benefit scraping bulk amounts of reaction data from Nist and then using data from pubchem and chemeo (where I personally average the data), I realised (and my peer),
-I could make this a tool to use later while also adding onto it (having the option to allow outliers).
 
-In essence this is a tool to help with the process of tabulating data for data analysis and personal research purposes - for fun
+with open("README.md", "r") as f:
+    description = f.read()
 
-"""
 setup(
     name="chemcell",
-    version="0.2.1",
+    version="0.2.2",
     description="highly modifiable tabulation for chemical reactions",
-    long_description= long_desc,
+    long_description= description,
+    long_description_content_type="text/markdown",
     author="Jordan Maquiran, Cooper Donnely",
     author_email="jordan.maquiran@outlook.com",
     url="https://github.com/SynAeri/Chemcell",
