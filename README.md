@@ -29,7 +29,7 @@ pip install chemcell
 Getting a bulk dataset including a specific element while modifying what is tabulated from Sites Pubchem, Chemeo and referencing Nist's handy reaction list.
 ```
 from chemcell import Chemcell as Chc
-example = Chc("Hcl", False, "file_source").range(5,20)
+example = Chc(["HCl"], False, "file_source").range(5,20)
 data = example.tabulate()
 ```
 For self study and educational purposes, general Ml predictions et al.
