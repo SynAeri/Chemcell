@@ -8,6 +8,9 @@ class Chemcelltabulate:
     #The purpose of this method? The purpose was mainly to make a 2d array to be made into a csv
     def process_data(self, name, r_Min, r_Max, Pc_P, C_P, R_count, P_Count, outliers):
         #\\\First Site\\\
+        if(len(name) != R_count + P_Count):
+            for i in range(R_count+P_Count - len(name)):
+                name.append(None);
         url = str.format('https://webbook.nist.gov/cgi/cbook.cgi?React={0}&React2=&Prod=&Prod2=&Rev=on&AllowOtherReact=on&AllowOtherProd=on&Type=Any&Units=SI', name)
 
         #gets the html
@@ -47,6 +50,10 @@ class Chemcelltabulate:
         R_c = R_count
         P_c = P_Count
         #Find the reaction lists
+        if(len(all_mixtures == 0)):
+            print("No data found on this combination (arranging the compounds does not change this!)")
+            return()
+
         for i in range(min, max):
             data = []
             print("\n","///new sources///")

@@ -13,7 +13,11 @@ class Chemcell:
 
     def __init__(self, name, outliers = False, file_location=None):
         #Defaults
-        self.name = name
+        if isinstance(name, str):
+            self.name = [name]
+        else:
+            self.name = name
+
         self.outliers = outliers
         self.file_location = file_location
         self.r_Min = None
