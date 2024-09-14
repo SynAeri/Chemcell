@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="chemcell",
-    version="0.2.2",
+    version="0.2.3",
     description="highly modifiable tabulation for chemical reactions",
     long_description= description,
     long_description_content_type="text/markdown",
