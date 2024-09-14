@@ -32,9 +32,12 @@ Chemcell(["HCl", "O"], False, "/workspaces/Chemcell/Example_Data").tabulate()
 When including outliers, it is either a true or false choice. The change in including the outlier or not decides on how the average for some datasets are calculated. This is shown through ```True``` or ```False```
 
 ## Specifying file location
+Provide the file location where the output (e.g., CSV) will be saved. Ensure the file path is correct and accessible.
+```
+example = Chemcell(["HCl"], False, "/path/to/file")
+```
 
-
-## Other Parameters
+## Advanced Usage
 ### Range
 Range takes in two parameters: minimum_search and max_search.
 
