@@ -65,7 +65,7 @@ Pc_Prop takes [x_1,...,x_n] properties
 
 Pc_Prop takes from [PubChemPy's](https://github.com/mcs07/PubChemPy/tree/master) api due  to my inability to scrape its products, which I will reattempt at a later day.
 
-The following properties available to be searched are as follows: MolecularFormula, MolecularWeight, CanonicalSMILES, IsomericSMILES, InChI, InChIKey, IUPACName, XLogP, ExactMass, MonoisotopicMass, TPSA, Complexity, Charge, HBondDonorCount, HBondAcceptorCount, RotatableBondCount, HeavyAtomCount, IsotopeAtomCount, AtomStereoCount, DefinedAtomStereoCount, UndefinedAtomStereoCount, BondStereoCount, DefinedBondStereoCount, UndefinedBondStereoCount, CovalentUnitCount, Volume3D, XStericQuadrupole3D, YStericQuadrupole3D, ZStericQuadrupole3D, FeatureCount3D, FeatureAcceptorCount3D, FeatureDonorCount3D, FeatureAnionCount3D, FeatureCationCount3D, FeatureRingCount3D, FeatureHydrophobeCount3D, ConformerModelRMSD3D, EffectiveRotorCount3D, ConformerCount3D.
+The following properties available to be searched are as follows: ```MolecularFormula, MolecularWeight, CanonicalSMILES, IsomericSMILES, InChI, InChIKey, IUPACName, XLogP, ExactMass, MonoisotopicMass, TPSA, Complexity, Charge, HBondDonorCount, HBondAcceptorCount, RotatableBondCount, HeavyAtomCount, IsotopeAtomCount, AtomStereoCount, DefinedAtomStereoCount, UndefinedAtomStereoCount, BondStereoCount, DefinedBondStereoCount, UndefinedBondStereoCount, CovalentUnitCount, Volume3D, XStericQuadrupole3D, YStericQuadrupole3D, ZStericQuadrupole3D, FeatureCount3D, FeatureAcceptorCount3D, FeatureDonorCount3D, FeatureAnionCount3D, FeatureCationCount3D, FeatureRingCount3D, FeatureHydrophobeCount3D, ConformerModelRMSD3D, EffectiveRotorCount3D, ConformerCount3D.```
 
 Collected from : [Pubchempy Docs: Properties](https://pubchempy.readthedocs.io/en/latest/guide/properties.html)
 
@@ -74,3 +74,12 @@ example = Chemcell(["HCl", "O"], False "File_location")
 #Finds data with "HBondAcceptorCount", if nothing found input N/A
 example.Pc_Prop(["HBondAcceptorCount"]).tabulate()
 ```
+
+### C_Prop
+Due to Chemeo's terms of service C_Prop isn't made and the static properties available are as follows:
+- Electron affinity 
+- Ionization energy
+- Critical Pressure
+- Dipole Moment
+- Critical Temperature
+- Octanol/Water partition coefficient
