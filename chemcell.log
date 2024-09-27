@@ -1,0 +1,17 @@
+2024-09-27 19:04:40,399 - chemcell - INFO - Initialising Chemcell with HCl, Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-27 19:04:40,399 - chemcell - INFO - Starting Bulk data buildup
+2024-09-27 19:04:42,338 - chemcell - INFO - r_min: 0, r_max: 4, total_mixture: 153
+2024-09-27 19:04:42,349 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Bromine-anion', 'Hydrogen-chloride', 'Hydrogen-chloride', 'Bromine-anion', 'Hydrogen-chloride'] Could be due to passing the R_count, P_count
+2024-09-27 19:04:42,355 - chemcell - WARNING - Mixture 1/4 did not yield results
+2024-09-27 19:04:42,356 - chemcell - INFO - Processing mixture: 1/4 ( 25.00%)
+2024-09-27 19:04:42,349 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Bromine-anion', 'Sulfur-dioxide', 'Hydrogen-chloride', 'Bromine-anion', 'Hydrogen-chloride', 'Sulfur-dioxide'] Could be due to passing the R_count, P_count
+2024-09-27 19:04:42,358 - chemcell - WARNING - Mixture 2/4 did not yield results
+2024-09-27 19:04:42,359 - chemcell - INFO - Processing mixture: 2/4 ( 50.00%)
+2024-09-27 19:04:56,331 - chemcell - INFO - Successfully processed mixture: 3/4
+2024-09-27 19:04:56,331 - chemcell - INFO - Processing mixture: 3/4 ( 75.00%)
+2024-09-27 19:05:00,506 - chemcell - INFO - Successfully processed mixture: 4/4
+2024-09-27 19:05:00,506 - chemcell - INFO - Processing mixture: 4/4 ( 100.00%)
+2024-09-27 19:05:00,506 - chemcell - INFO - 
+Processed 2 mixtures successfully out of 4 attempted.
