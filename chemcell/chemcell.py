@@ -1,18 +1,31 @@
 """
-Chemcell - 2024
-Main File for declaring and initialising self variables
+Chemcell - A Python Package for Chemical Data Analysis and Tabulation
+This module contains the main Chemcell class, which orchestrates the process of
+fetching, analyzing, and tabulating chemical data from various sources.
 
+License: MIT
 """
-from.utlity import save_csv, get_response
+
+
+import logging
+import logging.config
+from typing import List, Dict, Optional
+from.utlity import save_csv, get_response, Tabulate_Store
 from .scrape import Chemcelltabulate
 from .process import Chemcellprocess
-from .defval import DEFAULT_PUBCHEM_DATA, DEFAULT_CHEMEO_DATA
+from .config import DEFAULT_PUBCHEM_DATA, DEFAULT_CHEMEO_DATA
+from .data_sources import PubChemDataSource, ChemeoDataSource
+
+logging.config.fileConfig('chemcell/logging.conf')
+log = logging.getLogger('chemcell')
 
 
 class Chemcell:
 
-    def __init__(self, name, outliers = False, file_location=None):
+    def __init__(self, name: List[str], outliers: bool = False, file_location: Optional[str]=None):
         #Defaults
+        log.info(f"Initialising Chemcell with {name}, Keep outliers: {outliers}, file_location: {file_location}")
+
         if isinstance(name, str):
             self.name = [name]
         else:
@@ -26,38 +39,60 @@ class Chemcell:
         self.C_P = DEFAULT_CHEMEO_DATA
         self.R_count = 2
         self.P_Count = 2
+
         # Initialize Chemcelltabulate with all parameters
+
         self.Chemcelltabulate = Chemcelltabulate()
         self.Chemcellprocess = Chemcellprocess()
+        self.Tabulate_data = Tabulate_Store()
 
     #Options
-    def range(self, r_Min=None, r_Max=None):
+    def range(self, r_Min: Optional[int] = None, r_Max: Optional[int] = None):
         self.r_Min = r_Min
         self.r_Max = r_Max
         return self
+    
     #Pubchem_properties
-    def Pc_Prop(self, Pc_P = None):
+    def Pc_Prop(self, Pc_P: Optional[List[str]] = None):
         if Pc_P == None:
             Pc_P = DEFAULT_PUBCHEM_DATA
         self.Pc_P = Pc_P
         return self
+    
     #Chemeo_properties
-    def C_Prop(self, C_P = None):
-        if C_P == None:
-            C_P = DEFAULT_CHEMEO_DATA
-        self.C_P = C_P
+    def C_Prop(self):
+        self.C_P = DEFAULT_CHEMEO_DATA
         return self
     
-    def RP_Count(self, R_count = None, P_Count = None):
+    def RP_Count(self, R_count: Optional[int] = None, P_Count: Optional[int] = None):
         self.R_count = R_count
         self.P_Count = P_Count
         return self
 
     def tabulate(self):
-        raw_data, React_Count, Prod_Count = self.Chemcelltabulate.process_data(self.name, self.r_Min, self.r_Max, self.Pc_P, self.C_P, self.R_count, self.P_Count, self.outliers)
-        #Next Var in the chopping block: Process data to take headers + rows
+        """
+        Process and tabulate the chemical data.
+
+        This method orchestrates the entire data processing pipeline, including
+        data retrieval, processing, and tabulation.
+
+        Returns:
+            Tabulate_Store: An object containing the processed and tabulated data.
+        """
+        log.info("Starting Bulk data buildup")
+        raw_data, React_Count, Prod_Count = self.Chemcelltabulate.process_data(
+            self.name, self.r_Min, self.r_Max, self.Pc_P, self.C_P, 
+            self.R_count, self.P_Count, self.outliers
+        )
+
         headers = Chemcellprocess.Get_Logistics(React_Count, Prod_Count, self.C_P, self.Pc_P)
-        save_csv(self.file_location, self.name, headers, raw_data)
+        data = save_csv(self.file_location, self.name, headers, raw_data)
+        print(f"Chemcell class data: {data}")
+        self.Tabulate_data = Tabulate_Store(data, React_Count, Prod_Count, self.Pc_P + self.C_P)
+
+        return self.Tabulate_data
+
+
 
 
 

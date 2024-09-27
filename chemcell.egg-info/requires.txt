@@ -1,8 +1,0 @@
-beautifulsoup4
-pandas
-html.parser
-lxml
-requests
-urllib3
-pubchempy
-numpy

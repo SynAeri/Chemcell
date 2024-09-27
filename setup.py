@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="chemcell",
-    version="0.2.4",
+    version="0.2.5",
     description="highly modifiable tabulation for chemical reactions",
     long_description= description,
     long_description_content_type="text/markdown",
@@ -19,7 +19,6 @@ setup(
         "lxml",
         "requests",
         "urllib3",
-        "pubchempy",
         "numpy",
     ],
     classifiers=[

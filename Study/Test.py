@@ -1,4 +1,5 @@
 from chemcell import Chemcell
 
-example = Chemcell("Hcl", False, "/workspaces/Chemcell/Example_Data").range(0,6)
-example.tabulate()
+example = Chemcell("HCl", False, "/workspaces/Chemcell/Example_Data").range(0,4).tabulate()
+
+print(example)
