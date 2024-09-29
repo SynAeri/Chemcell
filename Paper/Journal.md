@@ -37,7 +37,7 @@ By combining disciplines from both computer science and chemistry, this package 
 
 `chemcell` is a data analysis python package for research and data analysis purposes. Python enables the use of reputable software such as pandas and bs4 to take reaction data from a facet of databases and parse them in readable and research built output. `chemcell` API is built to be designed to be simple, robust and efficient in it's purpose of modulating and manipulating data. `chemcell` was purposed to be used by both researchers, students and hobbyists for use of bulk data preprocessing and tabulation at a quick and easy rate for uses on prediction, data referral and analysis.
 
-While the singular python libraries `beautifulsoup4` and `pandas` do provide the building blocks for processing, data manipulation and web scraping. There lacks a readily available and modular solution which is tailored to taking bulk data reactions, splitting them into singular columns and pre-process data into the needed format in a short time span. A researcher would need to build a system with considerations for different cases and components.
+While python libraries `beautifulsoup4` and `pandas` do provide the building blocks for processing, data manipulation and web scraping. There lacks a out-of-the-box and modular solution which is tailored to taking bulk data reactions, splitting them into singular columns and pre-process data into the needed format in a short time span. A researcher would need to build a system with considerations for different cases and components.
 
 The need for a tool like `chemcell` is especially critical for researchers working with large datasets, students just beginning their journey in chemical informatics, and even hobbyists looking for a quick and effective way to preprocess and analyze chemical property data. By reducing the amount of time spent on data wrangling, chemcell allows users to focus on higher-level research tasks such as modeling and prediction, thereby accelerating the pace of research in both academic and industrial contexts.
 
@@ -45,20 +45,25 @@ The need for a tool like `chemcell` is especially critical for researchers worki
 
 # Implementation
 
-`chemcell` takes reaction data from [Nist](https://www.nist.gov/), and parses this into [Chemeo](https://www.chemeo.com/) and [Pubchem](https://pubchem.ncbi.nlm.nih.gov/) databases, and parses this into a process 
+`chemcell` takes reaction data from [Nist](https://www.nist.gov/), and parses this into [Chemeo](https://www.chemeo.com/) and [Pubchem](https://pubchem.ncbi.nlm.nih.gov/) databases. This data is parsed into an easily read csv format which can be automatically pre-processed to remove duplications and similar forms, split into reaction and product data formats and labelled according to it's correlation.
 
-# Figures
+The core workflow of chemcell involves three main steps:
 
-Figures can be included like this:
-![Caption for example figure.\label{fig:example}](figure.png)
-and referenced from text using \autoref{fig:example}.
+Data Extraction: chemcell connects to the APIs or HTML endpoints of the databases to retrieve reaction data in raw format. For [NIST](https://www.nist.gov/), the tool scrapes reaction details such as reactants, products, and conditions. Data from [Chemeo](https://www.chemeo.com/) and [PubChem](https://pubchem.ncbi.nlm.nih.gov/), which focus on chemical properties and molecular structures, is collected to enrich the reaction dataset.
 
-Figure sizes can be customized by adding an optional second parameter:
-![Caption for example figure.](figure.png){ width=20% }
+Data Parsing: The raw data is parsed into structured formats. The parsing process organizes data into reaction-specific rows and product-specific rows, ensuring that each entry is properly labeled with key identifiers (e.g., CAS numbers, reaction types), accounting for multiple versions of provided data, they are averaged, not including or including the outlier (according to the user). This step also involves checking for missing values and duplicates, ensuring data quality.
 
-# Acknowledgements
+Data Preprocessing: To prepare the data for analysis, chemcell provides built-in preprocessing functionalities. These include:
 
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+Deduplication: Automated removal of redundant entries and duplicate reactions across the sources.
+Data Cleaning: Standardizing units, chemical names, and molecular formulas.
+Labeling: Each reaction and product is labeled according to its correlation, which helps researchers easily distinguish between reactants and products when conducting further analysis.
 
-# References
+Output: The cleaned and preprocessed data is then exported to CSV format for easy integration with other tools. The CSV format allows for compatibility with a wide variety of data analysis pipelines, from machine learning models to statistical analysis.
+
+| Reactant_Count | Product Count| Reactant_Name_1 | Reactant_ID_1 | Molecular Weight |
+|----------|:---------------:|:-----------------:|------------|---------|
+| 2  | 1  | 1,3-Butadiene               | 106-99-0 | 54.09    |
+| 2      | 1 | 	1-Butene               | 106-98-9   | 56.11    |
+| 2        | 1 | 1-Propene,-2-methyl-     | 115-11-7   | 56.11    |
+
