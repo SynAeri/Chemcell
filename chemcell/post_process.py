@@ -3,13 +3,8 @@ Where data once collected is preprocessed after tabulation
 Most tabular manipulation is handled here
 
 """
-import csv
-import os
-import io
 import logging
-import tempfile
 from math import ceil
-from contextlib import closing
 from requests import get
 import pandas as pd
 from .config import DEFAULT_CHEMEO_DATA, DEFAULT_PUBCHEM_DATA
@@ -18,17 +13,17 @@ log = logging.getLogger('chemcell')
 
 class ChemcellPostTabulate:
 
-    def __init__(self, Data, reactants, products, properties):
+    def __init__(self, Data, reactants, products, properties, file_loc = ""):
         self.Data = Data
         self.reactants = reactants
         self.products = products
         self.properties = properties
+        self.file_loc = file_loc
 
-    def SplitFields(self, data= None, reactants = None, products = None, properties = None):
+    def SplitFields(self, data= None, reactants = None, products = None, properties = None, Download: bool = False):
         #If data here is none then we use self_data which is provided
-        print("PASSED")
         if data == None:
-            print(f"DATA IS NONE SO CHANGING TO SELF DATA: {self.Data}")
+            print(f"No data given, changing to: {self.Data}")
             try:
                 data = pd.read_csv(self.Data)
             except Exception as e:
@@ -42,7 +37,7 @@ class ChemcellPostTabulate:
 
         if properties == None:
             properties = self.properties
-
+            
         try:
             total_R_P = (reactants + products)
             columns_dropped = data.drop(columns=["Reactant_Count","Product_Count"], axis=1)

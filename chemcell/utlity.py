@@ -1,6 +1,7 @@
 import csv
 import os
 import io
+from io import StringIO
 import logging
 import tempfile
 from .post_process import ChemcellPostTabulate
@@ -9,6 +10,8 @@ from requests import get
 import pandas as pd
 
 log = logging.getLogger('chemcell')
+
+
 
 def response(resp):
     #if it is a functioning HTML
@@ -25,12 +28,29 @@ def get_response(url):
             return resp.content
         else:
             return None
-
+        
+def Get_Logistics(React_c, Prod_c, C_P, Pc_P):
+    header_c = ['Reactant_Count', 'Product_Count']
+    Chemeo_Prop = C_P
+    Pubchem_Prop = Pc_P
+    Props = Pubchem_Prop + Chemeo_Prop
+    for i in range(React_c):
+        header_c.append(f"Reactant_Name_{i+1}")
+        header_c.append(f"Reactant_ID_{i+1}")
+        header_c += Props
+    
+    for i in range(Prod_c):
+        header_c.append(f"Product_Name_{i+1}")
+        header_c.append(f"Product_ID_{i+1}")
+        header_c += Props
+    
+    return(header_c)
+    
 def save_csv(file_location, name, headers, rows):
         if file_location == None:
             file_location = os.path.join(tempfile.gettempdir(), 'temprawdata.txt')
         else:
-            file_location = os.path.join(file_location, f"Ouput_Data_{name}.csv")
+            file_location = os.path.join(file_location, f"Output_Data_{name}.csv")
 
         output = io.StringIO()
         writer = csv.writer(output)
@@ -38,7 +58,7 @@ def save_csv(file_location, name, headers, rows):
         writer.writerows(rows)
         csv_content = output.getvalue()
 
-        print("\n Saving file")
+        log.debug("Saving file")
         with open(file_location, 'w', newline = '') as file:
             file.write(csv_content)
 
@@ -77,6 +97,34 @@ def _print_compound_data(reacts, products, data, properties):
 
     print("\nEnd of Compound Data")
 
+
+
+def setup_logging(default_path='logging.conf', default_log_level=logging.INFO, env_key='LOG_CFG'):
+
+    """
+    Setup logging configuration
+    
+    :param default_path: path to the logging configuration file
+    :param default_level: default logging level
+    :param env_key: environment variable key to check for config file path
+    :return: configured logger
+    """
+
+    path = os.getenv(env_key, default_path)
+    if os.path.exists(path):
+        try:
+            logging.config.fileConfig(path)
+            print(f"Loaded logging configuration from {path}")
+        except Exception as e:
+            print(f"Error loading logging configuration: {e}. Using basic configuration.")
+            logging.basicConfig(level=default_log_level)
+    else:
+        print(f"Logging config file not found at {path}. Using basic configuration.")
+        logging.basicConfig(level=default_log_level,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    
+    return logging.getLogger('chemcell')
+
+
 """
 This class responds to the return statement of chemcells tabulation method and has it return a string of data if printed out.
 
@@ -89,31 +137,37 @@ class Tabulate_Store:
         self.products = products
         self.properties = properties
         self.Post_tabulate = ChemcellPostTabulate(self.data, self.reactants, self.products, self.properties)
+
+
+    def _format_segment(self, segments):
+        output = StringIO()
+        total_compounds = len(segments)
+        
+        for compound_index in range(len(segments[0])):
+            print(f"Compound {compound_index + 1}:", file=output)
+            
+            for segment_index, segment in enumerate(segments):
+                if compound_index < len(segment):
+                    row = segment.iloc[compound_index]
+                    compound_type = "Reactant" if segment_index < self.reactants else "Product"
+                    compound_number = segment_index + 1 if segment_index < self.reactants else segment_index - self.reactants + 1
+                    
+                    print(f"  {compound_type}_{compound_number}:", file=output)
+                    for column, value in row.items():
+                        if pd.notnull(value):
+                            formatted_value = f"{value:.4f}" if isinstance(value, float) else str(value)
+                            print(f"    {column}: {formatted_value}", file=output)
+            
+            print("-" * 40, file=output)  # Separator between compounds
+        
+        return output.getvalue()
     
     def __str__(self):
         try:
             data_segments = self.Post_tabulate.SplitFields()
-            output = []
-            
-            for segment in data_segments:
-                output.append(self._format_segment(segment))
-            
-            return "\n\n".join(output)
+            return self._format_segment(data_segments)
         except Exception as e:
             log.error(f"Error in Tabulate_Store __str__ method: {e}")
             return f"Error processing data: {str(e)}"
-
-    def _format_segment(self, segment):
-        formatted_output = []
-        for _, row in segment.iterrows():
-            formatted_output.append("Compound Data:")
-            for column, value in row.items():
-                if pd.notnull(value):  # Only include non-null values
-                    if isinstance(value, float):
-                        formatted_output.append(f"{column}: {value:.4f}")
-                    else:
-                        formatted_output.append(f"{column}: {value}")
-            formatted_output.append("-" * 40)  # Separator between compounds
-        return "\n".join(formatted_output)
     
  

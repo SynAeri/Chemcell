@@ -1,11 +1,9 @@
-import requests
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import urljoin
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString, Tag
 from .utlity import save_csv, get_response, _print_compound_data
 from .data_sources import PubChemDataSource, ChemeoDataSource
-import sys
 from .config import *
 
 #Initialising Log
@@ -49,17 +47,26 @@ class Chemcelltabulate:
         #we locate the segment where links are located
         link_iter = html.find(id="main")
         element_lists = link_iter.find('ol')
+        if element_lists:
+            return element_lists.find_all("li", {"class": "mixture"})
+        log.debug("Yielded nil result next method")
+        
+        element_lists_2 = link_iter.ul.li.find(string=lambda text: "Reaction by formula:" in text if text else False)
+        if element_lists_2:
+            element_lists_2 = element_lists_2.find_parent('li')
+            return [element_lists_2]
+
         if element_lists is None:
             raise ValueError("Nothing found for this combination. Please choose another combination.")
         return element_lists.find_all("li", {"class": "mixture"})
-    
+
     def _process_mixtures(self, all_mixtures, r_Min, r_Max, Pc_P, C_P, R_count, P_count, outliers):
         rows = []
         total_mix = len(all_mixtures)
         log.info(f"r_min: {r_Min}, r_max: {r_Max}, total_mixture: {total_mix}")
 
         if r_Max is None or r_Max > total_mix:
-            log.warning("r_Max was either none or larger than total, assumed and defaulted to max value")
+            log.warning(f"r_Max was either none or larger than total, assumed and defaulted to max value")
             r_Max = total_mix
         if r_Min is None or r_Min == r_Max:
             r_Min = 0
@@ -119,13 +126,22 @@ class Chemcelltabulate:
         return data if data else None
     
     def _get_reactants_and_products(self, mixture):
+
         reacts, products = [], []
         products_next = False
         #fallback link if first method does not work
         link = mixture.a['href']
-
         #If the reactants + products are the same then we skip them until it is different
         for j in mixture.a:
+            if(isinstance(j, NavigableString)):
+                for i in mixture:
+                    if(str(i.text) == " = "):
+                        products_next = True
+                    if(i.a):
+                        compound = i.a.parent['title']
+                        (products if products_next else reacts).append(compound)
+
+                break
             if j.has_attr('title'):
                 compound = j.text.strip().replace(' ', '-') if j.text.strip() else j['title'].strip().replace(' ', '-')
                 (products if products_next else reacts).append(compound)

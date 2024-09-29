@@ -8,17 +8,14 @@ License: MIT
 
 
 import logging
+import os
 import logging.config
 from typing import List, Dict, Optional
-from.utlity import save_csv, get_response, Tabulate_Store
+from.utlity import save_csv, setup_logging, Get_Logistics, Tabulate_Store
 from .scrape import Chemcelltabulate
-from .process import Chemcellprocess
 from .config import DEFAULT_PUBCHEM_DATA, DEFAULT_CHEMEO_DATA
-from .data_sources import PubChemDataSource, ChemeoDataSource
 
-logging.config.fileConfig('chemcell/logging.conf')
-log = logging.getLogger('chemcell')
-
+log = setup_logging(default_path=os.path.join(os.path.dirname(__file__), 'logging.conf'))
 
 class Chemcell:
 
@@ -41,9 +38,7 @@ class Chemcell:
         self.P_Count = 2
 
         # Initialize Chemcelltabulate with all parameters
-
         self.Chemcelltabulate = Chemcelltabulate()
-        self.Chemcellprocess = Chemcellprocess()
         self.Tabulate_data = Tabulate_Store()
 
     #Options
@@ -85,7 +80,7 @@ class Chemcell:
             self.R_count, self.P_Count, self.outliers
         )
 
-        headers = Chemcellprocess.Get_Logistics(React_Count, Prod_Count, self.C_P, self.Pc_P)
+        headers = Get_Logistics(React_Count, Prod_Count, self.C_P, self.Pc_P)
         data = save_csv(self.file_location, self.name, headers, raw_data)
         print(f"Chemcell class data: {data}")
         self.Tabulate_data = Tabulate_Store(data, React_Count, Prod_Count, self.Pc_P + self.C_P)
