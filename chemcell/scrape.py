@@ -1,12 +1,9 @@
-import requests
 import logging
-import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup, NavigableString, Tag
 from .utlity import save_csv, get_response, _print_compound_data
 from .data_sources import PubChemDataSource, ChemeoDataSource
-import sys
 from .config import *
 
 #Initialising Log

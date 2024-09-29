@@ -3,13 +3,8 @@ Where data once collected is preprocessed after tabulation
 Most tabular manipulation is handled here
 
 """
-import csv
-import os
-import io
 import logging
-import tempfile
 from math import ceil
-from contextlib import closing
 from requests import get
 import pandas as pd
 from .config import DEFAULT_CHEMEO_DATA, DEFAULT_PUBCHEM_DATA
