@@ -1,0 +1,157 @@
+2024-09-28 11:25:13,176 - chemcell - INFO - Initialising Chemcell with HCl, Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-28 11:25:13,178 - chemcell - INFO - Starting Bulk data buildup
+2024-09-28 11:25:14,817 - chemcell - INFO - r_min: 0, r_max: 12, total_mixture: 153
+2024-09-28 11:25:14,820 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Bromine-anion', 'Hydrogen-chloride', 'Hydrogen-chloride', 'Bromine-anion', 'Hydrogen-chloride'] Could be due to passing the R_count, P_count
+2024-09-28 11:25:14,821 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Bromine-anion', 'Sulfur-dioxide', 'Hydrogen-chloride', 'Bromine-anion', 'Hydrogen-chloride', 'Sulfur-dioxide'] Could be due to passing the R_count, P_count
+2024-09-28 11:25:14,825 - chemcell - WARNING - Mixture 1/12 did not yield results
+2024-09-28 11:25:14,826 - chemcell - INFO - Processing mixture: 1/12 ( 8.33%)
+2024-09-28 11:25:14,827 - chemcell - WARNING - Mixture 2/12 did not yield results
+2024-09-28 11:25:14,828 - chemcell - INFO - Processing mixture: 2/12 ( 16.67%)
+2024-09-28 11:25:26,241 - chemcell - INFO - Successfully processed mixture: 3/12
+2024-09-28 11:25:26,242 - chemcell - INFO - Processing mixture: 3/12 ( 25.00%)
+2024-09-28 11:25:28,383 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['sodium-methanolate', 'Hydrogen-chloride', 'Water', 'Methyl-Alcohol', 'sodium-chloride'] Could be due to passing the R_count, P_count
+2024-09-28 11:25:28,385 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['C2Ag2', 'Hydrogen-chloride', 'Water', 'Acetylene', 'Silver-chloride'] Could be due to passing the R_count, P_count
+2024-09-28 11:25:28,383 - chemcell - INFO - Successfully processed mixture: 4/12
+2024-09-28 11:25:28,404 - chemcell - INFO - Processing mixture: 4/12 ( 33.33%)
+2024-09-28 11:25:28,442 - chemcell - WARNING - Mixture 5/12 did not yield results
+2024-09-28 11:25:28,451 - chemcell - INFO - Processing mixture: 5/12 ( 41.67%)
+2024-09-28 11:25:28,451 - chemcell - WARNING - Mixture 6/12 did not yield results
+2024-09-28 11:25:28,452 - chemcell - INFO - Processing mixture: 6/12 ( 50.00%)
+2024-09-28 11:25:28,453 - chemcell - INFO - Successfully processed mixture: 7/12
+2024-09-28 11:25:28,453 - chemcell - INFO - Processing mixture: 7/12 ( 58.33%)
+2024-09-28 11:25:29,924 - chemcell - INFO - Successfully processed mixture: 8/12
+2024-09-28 11:25:29,925 - chemcell - INFO - Processing mixture: 8/12 ( 66.67%)
+2024-09-28 11:25:32,912 - chemcell - INFO - Successfully processed mixture: 9/12
+2024-09-28 11:25:32,913 - chemcell - INFO - Processing mixture: 9/12 ( 75.00%)
+2024-09-28 11:25:40,755 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-28 11:25:41,933 - chemcell - ERROR - Both methods failed to find CAS for hydrogen-fluoride
+2024-09-28 11:25:41,975 - chemcell - ERROR - Error processing mixture 10/12:
+2024-09-28 11:25:41,997 - chemcell - ERROR - Exception: list index out of range
+2024-09-28 11:25:42,019 - chemcell - INFO - Processing mixture: 10/12 ( 83.33%)
+2024-09-28 11:25:42,482 - chemcell - INFO - Successfully processed mixture: 11/12
+2024-09-28 11:25:42,483 - chemcell - INFO - Processing mixture: 11/12 ( 91.67%)
+2024-09-28 11:25:46,004 - chemcell - INFO - Successfully processed mixture: 12/12
+2024-09-28 11:25:46,004 - chemcell - INFO - Processing mixture: 12/12 ( 100.00%)
+2024-09-28 11:25:46,006 - chemcell - INFO - 
+Processed 7 mixtures successfully out of 12 attempted.
+2024-09-28 12:03:11,670 - chemcell - INFO - Initialising Chemcell with ['H2O', 'Cl'], Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-28 12:03:11,671 - chemcell - INFO - Starting Bulk data buildup
+2024-09-28 12:03:12,864 - chemcell - INFO - r_min: 0, r_max: 12, total_mixture: 16
+2024-09-28 12:03:12,865 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Methyl-Alcohol', 'Water', 'Chlorine-anion', 'Water', 'Methyl-Alcohol'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,866 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Methyl-Alcohol', 'Water', 'Chlorine-anion', 'Water', 'Methyl-Alcohol'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,869 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Methyl-Alcohol', 'Water', 'Chlorine-anion', 'Water', 'Methyl-Alcohol'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,867 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Hydrogen-chloride', 'Water', 'Chlorine-anion', 'Water', 'Hydrogen-chloride'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,871 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,866 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Hydrogen-chloride', 'Water', 'Chlorine-anion', 'Water', 'Hydrogen-chloride'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,869 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Hydrogen-chloride', 'Water', 'Chlorine-anion', 'Water', 'Hydrogen-chloride'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,870 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,868 - chemcell - WARNING - Mixture 1/12 did not yield results
+2024-09-28 12:03:12,871 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,872 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,873 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:03:12,875 - chemcell - INFO - Processing mixture: 1/12 ( 8.33%)
+2024-09-28 12:03:12,878 - chemcell - WARNING - Mixture 2/12 did not yield results
+2024-09-28 12:03:12,878 - chemcell - INFO - Processing mixture: 2/12 ( 16.67%)
+2024-09-28 12:03:12,879 - chemcell - WARNING - Mixture 3/12 did not yield results
+2024-09-28 12:03:12,880 - chemcell - INFO - Processing mixture: 3/12 ( 25.00%)
+2024-09-28 12:03:12,881 - chemcell - WARNING - Mixture 4/12 did not yield results
+2024-09-28 12:03:12,881 - chemcell - INFO - Processing mixture: 4/12 ( 33.33%)
+2024-09-28 12:03:12,882 - chemcell - WARNING - Mixture 5/12 did not yield results
+2024-09-28 12:03:12,883 - chemcell - INFO - Processing mixture: 5/12 ( 41.67%)
+2024-09-28 12:03:12,883 - chemcell - WARNING - Mixture 6/12 did not yield results
+2024-09-28 12:03:12,884 - chemcell - INFO - Processing mixture: 6/12 ( 50.00%)
+2024-09-28 12:03:12,885 - chemcell - WARNING - Mixture 7/12 did not yield results
+2024-09-28 12:03:12,886 - chemcell - INFO - Processing mixture: 7/12 ( 58.33%)
+2024-09-28 12:03:12,886 - chemcell - WARNING - Mixture 8/12 did not yield results
+2024-09-28 12:03:12,887 - chemcell - INFO - Processing mixture: 8/12 ( 66.67%)
+2024-09-28 12:03:12,889 - chemcell - WARNING - Mixture 9/12 did not yield results
+2024-09-28 12:03:12,889 - chemcell - INFO - Processing mixture: 9/12 ( 75.00%)
+2024-09-28 12:03:12,891 - chemcell - WARNING - Mixture 10/12 did not yield results
+2024-09-28 12:03:12,891 - chemcell - INFO - Processing mixture: 10/12 ( 83.33%)
+2024-09-28 12:03:12,892 - chemcell - WARNING - Mixture 11/12 did not yield results
+2024-09-28 12:03:12,893 - chemcell - INFO - Processing mixture: 11/12 ( 91.67%)
+2024-09-28 12:03:13,843 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-28 12:03:15,023 - chemcell - ERROR - Both methods failed to find CAS for Chlorine-anion
+2024-09-28 12:03:22,840 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-28 12:03:24,018 - chemcell - ERROR - Both methods failed to find CAS for Chlorine-anion
+2024-09-28 12:03:29,807 - chemcell - ERROR - Error processing mixture 12/12:
+2024-09-28 12:03:29,808 - chemcell - ERROR - Exception: list index out of range
+2024-09-28 12:03:29,809 - chemcell - INFO - Processing mixture: 12/12 ( 100.00%)
+2024-09-28 12:03:29,810 - chemcell - INFO - 
+Processed 0 mixtures successfully out of 12 attempted.
+2024-09-28 12:42:05,806 - chemcell - INFO - Initialising Chemcell with ['H2O', 'Cl'], Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-28 12:42:05,809 - chemcell - INFO - Starting Bulk data buildup
+2024-09-28 12:42:07,058 - chemcell - INFO - r_min: 0, r_max: 12, total_mixture: 16
+2024-09-28 12:42:07,060 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Methyl-Alcohol', 'Water', 'Chlorine-anion', 'Water', 'Methyl-Alcohol'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,061 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Hydrogen-chloride', 'Water', 'Chlorine-anion', 'Water', 'Hydrogen-chloride'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,070 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Hydrogen-chloride', 'Water', 'Chlorine-anion', 'Water', 'Hydrogen-chloride'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,063 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Hydrogen-chloride', 'Water', 'Chlorine-anion', 'Water', 'Hydrogen-chloride'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,066 - chemcell - WARNING - Mixture 1/12 did not yield results
+2024-09-28 12:42:07,069 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Methyl-Alcohol', 'Water', 'Chlorine-anion', 'Water', 'Methyl-Alcohol'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,061 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Methyl-Alcohol', 'Water', 'Chlorine-anion', 'Water', 'Methyl-Alcohol'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,072 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,073 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,074 - chemcell - INFO - Processing mixture: 1/12 ( 8.33%)
+2024-09-28 12:42:07,087 - chemcell - WARNING - Mixture 2/12 did not yield results
+2024-09-28 12:42:07,081 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,084 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,077 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
+Data shown is not fullilling criteria ['Chlorine-anion', 'Water', 'Water', 'Chlorine-anion', 'Water'] Could be due to passing the R_count, P_count
+2024-09-28 12:42:07,090 - chemcell - INFO - Processing mixture: 2/12 ( 16.67%)
+2024-09-28 12:42:07,099 - chemcell - WARNING - Mixture 3/12 did not yield results
+2024-09-28 12:42:07,101 - chemcell - INFO - Processing mixture: 3/12 ( 25.00%)
+2024-09-28 12:42:07,103 - chemcell - WARNING - Mixture 4/12 did not yield results
+2024-09-28 12:42:07,109 - chemcell - INFO - Processing mixture: 4/12 ( 33.33%)
+2024-09-28 12:42:07,112 - chemcell - WARNING - Mixture 5/12 did not yield results
+2024-09-28 12:42:07,115 - chemcell - INFO - Processing mixture: 5/12 ( 41.67%)
+2024-09-28 12:42:07,117 - chemcell - WARNING - Mixture 6/12 did not yield results
+2024-09-28 12:42:07,124 - chemcell - INFO - Processing mixture: 6/12 ( 50.00%)
+2024-09-28 12:42:07,125 - chemcell - WARNING - Mixture 7/12 did not yield results
+2024-09-28 12:42:07,130 - chemcell - INFO - Processing mixture: 7/12 ( 58.33%)
+2024-09-28 12:42:07,131 - chemcell - WARNING - Mixture 8/12 did not yield results
+2024-09-28 12:42:07,131 - chemcell - INFO - Processing mixture: 8/12 ( 66.67%)
+2024-09-28 12:42:07,136 - chemcell - WARNING - Mixture 9/12 did not yield results
+2024-09-28 12:42:07,140 - chemcell - INFO - Processing mixture: 9/12 ( 75.00%)
+2024-09-28 12:42:07,141 - chemcell - WARNING - Mixture 10/12 did not yield results
+2024-09-28 12:42:07,141 - chemcell - INFO - Processing mixture: 10/12 ( 83.33%)
+2024-09-28 12:42:07,144 - chemcell - WARNING - Mixture 11/12 did not yield results
+2024-09-28 12:42:07,147 - chemcell - INFO - Processing mixture: 11/12 ( 91.67%)
+2024-09-28 12:42:08,056 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-28 12:42:09,560 - chemcell - ERROR - Both methods failed to find CAS for Chlorine-anion
+2024-09-28 12:42:16,960 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-28 12:42:18,135 - chemcell - ERROR - Both methods failed to find CAS for Chlorine-anion
+2024-09-28 12:42:28,270 - chemcell - INFO - Initialising Chemcell with ['H2O', 'HCl'], Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-28 12:42:28,272 - chemcell - INFO - Starting Bulk data buildup
+2024-09-28 12:46:50,311 - chemcell - INFO - Initialising Chemcell with ['H2O', 'HCl'], Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-28 12:46:50,314 - chemcell - INFO - Starting Bulk data buildup
+2024-09-28 12:48:00,617 - chemcell - INFO - Initialising Chemcell with ['H2O', 'HCl'], Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-28 12:48:00,618 - chemcell - INFO - Starting Bulk data buildup
+2024-09-28 12:48:38,138 - chemcell - INFO - Initialising Chemcell with ['H2O', 'HCl'], Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-28 12:48:38,140 - chemcell - INFO - Starting Bulk data buildup
+2024-09-28 12:49:45,885 - chemcell - INFO - Initialising Chemcell with ['H2O', 'HCl'], Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-28 12:49:45,890 - chemcell - INFO - Starting Bulk data buildup

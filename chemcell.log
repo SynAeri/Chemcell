@@ -1,17 +1,46 @@
-2024-09-27 19:04:40,399 - chemcell - INFO - Initialising Chemcell with HCl, Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
-2024-09-27 19:04:40,399 - chemcell - INFO - Starting Bulk data buildup
-2024-09-27 19:04:42,338 - chemcell - INFO - r_min: 0, r_max: 4, total_mixture: 153
-2024-09-27 19:04:42,349 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
-Data shown is not fullilling criteria ['Bromine-anion', 'Hydrogen-chloride', 'Hydrogen-chloride', 'Bromine-anion', 'Hydrogen-chloride'] Could be due to passing the R_count, P_count
-2024-09-27 19:04:42,355 - chemcell - WARNING - Mixture 1/4 did not yield results
-2024-09-27 19:04:42,356 - chemcell - INFO - Processing mixture: 1/4 ( 25.00%)
-2024-09-27 19:04:42,349 - chemcell - WARNING - BEGINNING PROCESS SINGLE MIXTURE: FAILED
-Data shown is not fullilling criteria ['Bromine-anion', 'Sulfur-dioxide', 'Hydrogen-chloride', 'Bromine-anion', 'Hydrogen-chloride', 'Sulfur-dioxide'] Could be due to passing the R_count, P_count
-2024-09-27 19:04:42,358 - chemcell - WARNING - Mixture 2/4 did not yield results
-2024-09-27 19:04:42,359 - chemcell - INFO - Processing mixture: 2/4 ( 50.00%)
-2024-09-27 19:04:56,331 - chemcell - INFO - Successfully processed mixture: 3/4
-2024-09-27 19:04:56,331 - chemcell - INFO - Processing mixture: 3/4 ( 75.00%)
-2024-09-27 19:05:00,506 - chemcell - INFO - Successfully processed mixture: 4/4
-2024-09-27 19:05:00,506 - chemcell - INFO - Processing mixture: 4/4 ( 100.00%)
-2024-09-27 19:05:00,506 - chemcell - INFO - 
-Processed 2 mixtures successfully out of 4 attempted.
+2024-09-29 04:58:00,928 - chemcell - INFO - Initialising Chemcell with ['Methane'], Keep outliers: False, file_location: /workspaces/Chemcell/Example_Data
+2024-09-29 04:58:00,928 - chemcell - INFO - Starting Bulk data buildup
+2024-09-29 04:58:02,569 - chemcell - INFO - r_min: 0, r_max: 10, total_mixture: 110
+2024-09-29 04:58:06,808 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:07,488 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:07,990 - chemcell - ERROR - Both methods failed to find CAS for Hydrogen-cation
+2024-09-29 04:58:08,668 - chemcell - ERROR - Both methods failed to find CAS for hydrogen-fluoride
+2024-09-29 04:58:10,760 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:11,886 - chemcell - INFO - Successfully processed mixture: 1/10
+2024-09-29 04:58:11,886 - chemcell - INFO - Processing mixture: 1/10 ( 10.00%)
+2024-09-29 04:58:12,824 - chemcell - INFO - Successfully processed mixture: 2/10
+2024-09-29 04:58:12,824 - chemcell - INFO - Processing mixture: 2/10 ( 20.00%)
+2024-09-29 04:58:12,861 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:13,067 - chemcell - ERROR - Both methods failed to find CAS for CH4Br-
+2024-09-29 04:58:13,069 - chemcell - INFO - Successfully processed mixture: 3/10
+2024-09-29 04:58:13,069 - chemcell - INFO - Processing mixture: 3/10 ( 30.00%)
+2024-09-29 04:58:13,790 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:14,976 - chemcell - ERROR - Both methods failed to find CAS for CH4Cl-
+2024-09-29 04:58:16,162 - chemcell - ERROR - Both methods failed to find CAS for CH4F-
+2024-09-29 04:58:16,298 - chemcell - INFO - Successfully processed mixture: 4/10
+2024-09-29 04:58:16,298 - chemcell - INFO - Processing mixture: 4/10 ( 40.00%)
+2024-09-29 04:58:16,616 - chemcell - INFO - Successfully processed mixture: 5/10
+2024-09-29 04:58:16,617 - chemcell - INFO - Processing mixture: 5/10 ( 50.00%)
+2024-09-29 04:58:17,599 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:17,880 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:19,056 - chemcell - ERROR - Both methods failed to find CAS for Bromine
+2024-09-29 04:58:19,815 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:20,059 - chemcell - ERROR - Both methods failed to find CAS for CH5+
+2024-09-29 04:58:21,105 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:22,200 - chemcell - ERROR - Both methods failed to find CAS for C2H8Cl-
+2024-09-29 04:58:22,211 - chemcell - INFO - Successfully processed mixture: 6/10
+2024-09-29 04:58:22,211 - chemcell - INFO - Processing mixture: 6/10 ( 60.00%)
+2024-09-29 04:58:23,385 - chemcell - ERROR - Both methods failed to find CAS for C2H8F-
+2024-09-29 04:58:23,386 - chemcell - INFO - Successfully processed mixture: 7/10
+2024-09-29 04:58:23,387 - chemcell - INFO - Processing mixture: 7/10 ( 70.00%)
+2024-09-29 04:58:24,923 - chemcell - WARNING - Method 1 has failed going for Method 2
+2024-09-29 04:58:26,517 - chemcell - INFO - Successfully processed mixture: 8/10
+2024-09-29 04:58:26,517 - chemcell - INFO - Processing mixture: 8/10 ( 80.00%)
+2024-09-29 04:58:27,032 - chemcell - INFO - Successfully processed mixture: 9/10
+2024-09-29 04:58:27,032 - chemcell - INFO - Processing mixture: 9/10 ( 90.00%)
+2024-09-29 04:58:27,521 - chemcell - ERROR - Both methods failed to find CAS for CH5+
+2024-09-29 04:58:31,310 - chemcell - INFO - Successfully processed mixture: 10/10
+2024-09-29 04:58:31,311 - chemcell - INFO - Processing mixture: 10/10 ( 100.00%)
+2024-09-29 04:58:31,311 - chemcell - INFO - 
+Processed 10 mixtures successfully out of 10 attempted.
+2024-09-29 04:58:31,312 - chemcell - DEBUG - Saving file

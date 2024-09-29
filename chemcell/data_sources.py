@@ -1,7 +1,11 @@
 import requests
+import logging
 from abc import ABC, abstractmethod
 from bs4 import BeautifulSoup
 from typing import List, Dict, Optional
+from .utlity import get_response
+
+log = logging.getLogger('chemcell')
 
 class abstractData_S(ABC):
     @abstractmethod
@@ -37,12 +41,9 @@ class ChemeoDataSource(abstractData_S):
     def fetch_data(self, identifier, properties, outliers = False):
         try:
             url = f"https://www.chemeo.com/search?q={identifier}"
-            response = requests.get(url)
-            if response.status_code != 200:
-                print(f"Error fetching Chemeo data for {identifier}: HTTP {response.status_code}")
-                return ['N/A'] * len(properties)
+            response = get_response(url)
 
-            html = BeautifulSoup(response.text, 'html.parser')
+            html = BeautifulSoup(response, 'html.parser')
             data = self._extract_property(html, properties, outliers)
 
             return data
